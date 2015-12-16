@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MainConsoleApp.Ch06;
+using MainConsoleApp.Ch08;
 
 namespace MainConsoleApp
 {
@@ -11,9 +12,10 @@ namespace MainConsoleApp
     {
         static void Main(string[] args)
         {
-            var tests = new[]
+            var tests = new AbstractTest[]
             {
-                new ArrayTest()
+                new ArrayTest(),
+                new DelegateTest()
             };
 
             int success = 0;

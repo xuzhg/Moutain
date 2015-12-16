@@ -44,6 +44,7 @@
     <Compile Include="AbstractTest.cs" />
     <Compile Include="Ch06\ArrayTest.cs" />
     <Compile Include="Ch06\Person.cs" />
+    <Compile Include="Ch08\DelegateTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
