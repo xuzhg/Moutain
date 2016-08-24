@@ -16,9 +16,22 @@ void DrawPoint()
 	glBegin(GL_POINTS);
 
 	glColor3f(1.0f, 1.0f, 1.0f);
-	glVertex2d(0.1f, -0.6f);
-	glVertex2d(0.7f, -0.6f);
-	glVertex2d(0.4f, -0.6f);
+	glVertex2f(0.1f, -0.8f);
+	glVertex2f(0.7f, -0.8f);
+	glVertex2f(0.4f, -0.8f);
+
+	glEnd();
+}
+
+void DrawLines()
+{
+	glBegin(GL_LINES);
+
+	glColor3f(1.0f, 1.0f, 1.0f);
+	glVertex2f(0.1f, -0.6f);
+	glVertex2f(0.7f, -0.6f);
+	glVertex2f(0.7f, -0.6f);
+	glVertex2f(0.4f, -0.6f);
 
 	glEnd();
 }
@@ -27,6 +40,7 @@ void Update()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	DrawPoint();
+	DrawLines();
 	glFlush();
 }
 
