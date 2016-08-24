@@ -36,11 +36,23 @@ void DrawLines()
 	glEnd();
 }
 
+void DrawSolidTriangle()
+{
+	glBegin(GL_TRIANGLES);
+
+	glColor3f(1.0f, 1.0f, 0.0f);
+	glVertex2f(0.1f, 0.6f);
+	glVertex2f(0.7f, 0.6f);
+	glVertex2f(0.7f, 0.1f);
+	glEnd();
+}
+
 void Update()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	DrawPoint();
 	DrawLines();
+	DrawSolidTriangle();
 	glFlush();
 }
 
