@@ -18,3 +18,7 @@ _[Ss]cripts
 *.psess
 *.orig
 *.sln.ide
+*.pdb
+*.obj
+[Dd]ebug
+*.open*
