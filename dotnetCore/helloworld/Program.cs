@@ -12,6 +12,7 @@ namespace ConsoleApplication
             new WebHostBuilder()
 			  .UseKestrel()
 			  .UseStartup<Startup>()
+			  .UseUrls("http://localhost:8888/", "http://localhost:9999/")
 			  .Build()
 			  .Run();
         }
