@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ConsoleApplication
 {
-	public class HomeController
+	public class HomeController : Controller
 	{
 		[HttpGet("/{name}")]
-		public string Index(string name)
+		public IActionResult Index(string name)
 		{
-			return $"Hello {name}";
+			ViewBag.Name = name;
+			return View();
 		}
 	}
 }
