@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using NumberFun;
+using Pets;
 
 namespace ConsoleApplication
 {
@@ -35,6 +37,18 @@ namespace ConsoleApplication
 			foreach(var digit in generator.Generate(15))
 			{
 				Console.WriteLine(digit);
+			}
+			
+			// Test the multiple folder
+			List<IPet> pets = new List<IPet>
+			{
+				new Dog(),
+				new Cat()
+			};
+			
+			foreach(var pet in pets)
+			{
+				Console.WriteLine(pet.TalkToOwner());
 			}
         }
     }
