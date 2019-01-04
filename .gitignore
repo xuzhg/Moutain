@@ -22,3 +22,4 @@ _[Ss]cripts
 *.obj
 [Dd]ebug
 *.open*
+[.vs]
