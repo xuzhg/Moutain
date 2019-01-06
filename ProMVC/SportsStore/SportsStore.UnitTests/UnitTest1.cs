@@ -176,5 +176,36 @@ namespace SportsStore.UnitTests
             // assert
             Assert.AreEqual(categoryToSelect, result);
         }
+
+        [TestMethod]
+        public void Generate_Category_Specific_Product_Count()
+        {
+            // Arrange
+            Mock<IProductsRepository> mock = new Mock<IProductsRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[]
+            {
+                new Product{ProductID = 1, Name = "p1", Category = "Cat1"},
+                new Product{ProductID = 2, Name = "p2", Category = "Cat2"},
+                new Product{ProductID = 3, Name = "p3", Category = "Cat1"},
+                new Product{ProductID = 4, Name = "p4", Category = "Cat2"},
+                new Product{ProductID = 5, Name = "p5", Category = "Cat3"},
+            });
+
+            // Arrange
+            ProductController controller = new ProductController(mock.Object);
+            controller.PageSize = 3;
+
+            // Act
+            int res1 = ((ProductsListViewModel)controller.List("Cat1").Model).PageInfo.TotalItems;
+            int res2 = ((ProductsListViewModel)controller.List("Cat2").Model).PageInfo.TotalItems;
+            int res3= ((ProductsListViewModel)controller.List("Cat3").Model).PageInfo.TotalItems;
+            int resAll = ((ProductsListViewModel)controller.List(null).Model).PageInfo.TotalItems;
+
+            // Assert
+            Assert.AreEqual(res1, 2);
+            Assert.AreEqual(res2, 2);
+            Assert.AreEqual(res3, 1);
+            Assert.AreEqual(resAll, 5);
+        }
     }
 }
