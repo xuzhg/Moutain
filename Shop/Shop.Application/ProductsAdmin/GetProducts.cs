@@ -21,7 +21,7 @@ namespace Shop.Application.ProductsAdmin
             {
                 Id = x.Id,
                 Name = x.Name,
-                Description = x.Description,
+                //Description = x.Description,
                // Value = $"$ {x.Value.ToString("N2")}"
                Value = x.Value
             });
@@ -31,7 +31,7 @@ namespace Shop.Application.ProductsAdmin
             public int Id { get; set; }
             public string Name { get; set; }
 
-            public string Description { get; set; }
+            //public string Description { get; set; }
 
             public decimal Value { get; set; }
         }

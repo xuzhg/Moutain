@@ -18,12 +18,26 @@ namespace Shop.Application.ProductsAdmin
 
         public async Task<Response> Do(Request req)
         {
+            var product = _context.Products.FirstOrDefault(x => x.Id == req.Id);
+
+            product.Name = req.Name;
+            product.Description = req.Description;
+            product.Value = req.Value;
+
             await _context.SaveChangesAsync();
-            return new Response();
+
+            return new Response
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Value = product.Value
+            };
         }
 
         public class Request
         {
+            public int Id { get; set; }
             public string Name { get; set; }
 
             public string Description { get; set; }
