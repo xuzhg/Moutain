@@ -3,21 +3,35 @@
 @{
 }
 
-<div id="app">
-	<div>
-		<p v-for="(product, index) in products">
-			{{index}} :: {{product.id}} - {{product.name}} 
-			<a v-on:click="editProduct(product.id, index)">Edit</a>
-			<a v-on:click="deleteProduct(product.id, index)">Remove</a>
-		</p>
-	</div>
+<div id="app" class="container">
+	<div class="columns">
+		<div class="column is-3">
+			<div class="menu">
+				<p class="menu-label">Admin menu</p>
+				<ul class=menu-list">
+					<li><a>Products</a><li>
+					<li><a>Orders</a><li>
+					<li><a>Stocks</a><li>
+				</ul>
+			</div>
+		</div>
+		<div class="column is-9">
+			<div>
+				<p v-for="(product, index) in products">
+					{{index}} :: {{product.id}} - {{product.name}} 
+					<a v-on:click="editProduct(product.id, index)">Edit</a>
+					<a v-on:click="deleteProduct(product.id, index)">Remove</a>
+				</p>
+			</div>
 
-	<div>
-		<input v-model="productModel.name" />
-		<input v-model="productModel.description" />
-		<input v-model="productModel.value" />
-		<button @@click="createProduct" v-if="!productModel.id">Create Product</button>
-		<button @@click="updateProduct" v-else>Update Product</button>
+			<div>
+				<input v-model="productModel.name" />
+				<input v-model="productModel.description" />
+				<input v-model="productModel.value" />
+				<button @@click="createProduct" v-if="!productModel.id">Create Product</button>
+				<button @@click="updateProduct" v-else>Update Product</button>
+			</div>
+		</div>
 	</div>
 </div>
 
