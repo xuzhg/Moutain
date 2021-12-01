@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using UseCases.DataStorePluginInterfaces;
 
 namespace Plugins.DataStore.InMemory
@@ -26,9 +27,22 @@ namespace Plugins.DataStore.InMemory
                 return;
             }
 
-            int maxId = _categories.Max(x => x.CategoryId);
-            category.CategoryId = maxId + 1;
+            if (_categories.Count > 0)
+            {
+                int maxId = _categories.Max(x => x.CategoryId);
+                category.CategoryId = maxId + 1;
+            }
+            else
+            {
+                category.CategoryId = 1;
+            }
+
             _categories.Add(category);
+        }
+
+        public void DeleteCategory(int categoryId)
+        {
+            _categories.Remove(GetCategoryById(categoryId));
         }
 
         public IEnumerable<Category> GetCategories()
