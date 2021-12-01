@@ -1,6 +1,7 @@
 ﻿@page "/products"
 @inject IViewProductsUseCase ViewProductsUseCase
 @inject IGetCategoryByIdUseCase GetCategoryByIdUseCase
+@inject IDeleteProductUseCase DeleteProductUseCase
 @inject NavigationManager NavigationManager
 
 <h3>Manage Products</h3>
@@ -61,8 +62,7 @@
 
 	private void OnClickDeleteProduct(int productId)
 	{
-		//DelteCategoryUseCase.Execute(productId);
-		// NavigationManager.NavigateTo("/categories");
+		DeleteProductUseCase.Execute(productId);
 		LoadProducts();
 	}
 
