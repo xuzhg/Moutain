@@ -34,6 +34,8 @@ namespace WebApp
             services.AddSingleton<WeatherForecastService>();
 
             services.AddScoped<ICategoryRepository, CategoryInMemoryRepository>();
+            services.AddScoped<IProductRepository, ProductInMemoryRepository>();
+            services.AddScoped<ITransactionRepository, TransactionInMemoryRepository>();
 
             // Category
             services.AddTransient<IViewCategoriesUseCase, ViewCategoriesUseCase>();
@@ -43,13 +45,18 @@ namespace WebApp
             services.AddTransient<IDeleteCategoryUseCase, DeleteCategoryUseCase>();
 
             // Product
-            services.AddScoped<IProductRepository, ProductInMemoryRepository>();
-
             services.AddTransient<IViewProductsUseCase, ViewProductsUseCase>();
             services.AddTransient<IAddProductUseCase, AddProductUseCase>();
             services.AddTransient<IEditProductUseCase, EditProductUseCase>();
             services.AddTransient<IGetProductByIdUseCase, GetProductByIdUseCase>();
             services.AddTransient<IDeleteProductUseCase, DeleteProductUseCase>();
+
+            services.AddTransient<IViewProductsByCategoryId, ViewProductsByCategoryId>();
+            services.AddTransient<ISellProductUseCase, SellProductUseCase>();
+
+            services.AddTransient<IRecordTransactionUseCase, RecordTransactionUseCase>();
+            services.AddTransient<IGetTodayTransactionUseCase, GetTodayTransactionUseCase>();
+            services.AddTransient<IGetTransactionUseCase, GetTransactionUseCase>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

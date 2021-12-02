@@ -96,5 +96,10 @@ namespace Plugins.DataStore.InMemory
                 ProductToUpdate.Price = Product.Price;
             }
         }
+
+        public IEnumerable<Product> GetProductsByCategoryId(int categoryId)
+        {
+            return _products.Where(p => p.CategoryId == categoryId);
+        }
     }
 }
