@@ -1,4 +1,5 @@
 ﻿@inject NavigationManager NavigationMgr
+@inject IDeleteProductUseCase DeleteProductUseCase
 
 @if (pd != null)
 {
@@ -8,7 +9,7 @@
         <td>@pd.Price.ToString("c")</td>
         <td>
             <button type="button" class="btn btn-light" @onclick="@(() => EditProduct(pd.ProductId))">Edit</button>
-            <button type="button" class="btn btn-light" @onclick="@(() => DeleteProduct(pd.ProductId))">Delete</button>
+            <button type="button" class="btn btn-light" @onclick="@(async () =>await DeleteProduct(pd.ProductId))">Delete</button>
         </td>
     </tr>
 }
@@ -17,13 +18,20 @@
     [Parameter]
     public Product? pd { get; set; }
 
+    [Parameter]
+    public EventCallback OnProductDeleted { get; set; }
+
     private void EditProduct(int pdId)
     {
-        // NavigationMgr.NavigateTo($"/editproduct/{pdId}");
+        NavigationMgr.NavigateTo($"/editproduct/{pdId}");
     }
 
-    private void DeleteProduct(int pdId)
+    private async Task DeleteProduct(int pdId)
     {
         //NavigationMgr.NavigateTo($"/editproduct/{pdId}");
+        await DeleteProductUseCase.ExecuteAsync(pdId);
+        //NavigationMgr.NavigateTo("/products");
+
+        await OnProductDeleted.InvokeAsync();
     }
 }

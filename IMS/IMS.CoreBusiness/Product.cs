@@ -22,6 +22,8 @@ namespace IMS.CoreBusiness
         [ProductInventory_EnsurePricesValidator]
         public double Price { get; set; }
 
+        public bool IsActive { get; set; } = true;
+
         public List<ProductInventory> ProductInventories { get; set; }
 
         public double TotalInventoryCost()
