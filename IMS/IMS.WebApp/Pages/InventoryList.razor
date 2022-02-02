@@ -1,0 +1,74 @@
+﻿@page "/inventories"
+@inject NavigationManager NavigationMgr
+@inject IViewInventoriesByNameUseCase ViewInventoriesByNameUseCase
+
+<h3>Inventory List</h3>
+<br />
+
+<ViewInventoriesComponent 
+    OnSearchInventories="OnSearchInventories"
+    DisplaySearchResult="true"
+    OnSelectInventory="OnSelectInventory"
+    >
+
+</ViewInventoriesComponent>
+
+@if (inventories != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var inv in this.inventories)
+            {
+                <InventoryItemComponent Inv="@inv"></InventoryItemComponent>
+            }
+        </tbody>
+    </table>
+}
+
+<br/>
+<button type="button" class="btn btn-primary" @onclick="AddInventory">Add Inventory</button>
+<br />
+<p>
+    @inv?.InventoryName
+</p>
+@code {
+
+    private List<Inventory>? inventories;
+    private Inventory inv;
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+
+        var invs = await ViewInventoriesByNameUseCase.ExecuteAsync();
+        this.inventories = invs.ToList();
+    }
+
+    private void OnSearchInventories(List<Inventory> invs)
+    {
+        inventories = invs;
+    }
+
+    private void AddInventory()
+    {
+        NavigationMgr.NavigateTo("/addinventory");
+    }
+
+    private void EditInventory(int invId)
+    {
+        NavigationMgr.NavigateTo($"/editinventory/{invId}");
+    }
+
+    private void OnSelectInventory(Inventory inventory)
+    {
+        inv = inventory;
+    }
+}

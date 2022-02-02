@@ -1,0 +1,29 @@
+﻿@inject NavigationManager NavigationMgr
+
+@if (pd != null)
+{
+    <tr>
+        <td>@pd.ProductName</td>
+        <td>@pd.Quantity</td>
+        <td>$@pd.Price.ToString("c")</td>
+        <td>
+            <button type="button" class="btn btn-light" @onclick="@(() => EditProduct(pd.ProductId))">Edit</button>
+            <button type="button" class="btn btn-light" @onclick="@(() => DeleteProduct(pd.ProductId))">Delete</button>
+        </td>
+    </tr>
+}
+
+@code {
+    [Parameter]
+    public Product? pd { get; set; }
+
+    private void EditProduct(int pdId)
+    {
+        // NavigationMgr.NavigateTo($"/editproduct/{pdId}");
+    }
+
+    private void DeleteProduct(int pdId)
+    {
+        //NavigationMgr.NavigateTo($"/editproduct/{pdId}");
+    }
+}
