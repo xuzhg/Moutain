@@ -23,5 +23,17 @@ namespace IMS.Plugins.EFCore
             return await this.context.Products.Where(x => x.ProductName.Contains(name, StringComparison.OrdinalIgnoreCase) ||
                string.IsNullOrWhiteSpace(name)).ToListAsync();
         }
+
+        public async Task AddProductAsync(Product product)
+        {
+            if (this.context.Products.Any(
+                x => x.ProductName.Equals(product.ProductName, StringComparison.OrdinalIgnoreCase)))
+            {
+                return;
+            }
+
+            this.context.Products.Add(product);
+            await this.context.SaveChangesAsync();
+        }
     }
 }
