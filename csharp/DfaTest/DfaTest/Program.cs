@@ -9,7 +9,7 @@ string[] cases = ["123", "-123", "123.456", "-123.456", ".123", "123.", "123.456
 
 foreach (string c in cases)
 {
-    if (DfaMatcher.IsAccepted(c))
+    if (DfaMatcher.IsMatch(c))
     {
         Console.WriteLine($"  '{c}' is accepted by the DFA");
     }
